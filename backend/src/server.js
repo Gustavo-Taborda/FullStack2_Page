@@ -21,6 +21,9 @@ app.get('/api/status', (req, res) => {
   res.json({ status: 'API funcionando' });
 });
 
+//Sem isso, o limite de tentativas de login pode tratar todo mundo como um só usuário
+app.set('trust proxy', 1);
+
 // Rotas (cada arquivo cuida de um "recurso")
 app.use('/api/auth', authRoutes);
 app.use('/api/categorias', categoriaRoutes);
