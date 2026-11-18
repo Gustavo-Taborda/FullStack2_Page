@@ -5,6 +5,13 @@ const cors = require('cors');
 const { testarConexao } = require('./config/db');
 const { tratarErros } = require('./middlewares/erros');
 
+const { Pool } = require('pg');
+
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false } // bancos na nuvem exigem SSL
+});
+
 const authRoutes = require('./routes/authRoutes');
 const categoriaRoutes = require('./routes/categoriaRoutes');
 const fonteDestinoRoutes = require('./routes/fonteDestinoRoutes');
